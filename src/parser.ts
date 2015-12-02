@@ -33,12 +33,12 @@ const TYPE_SPECIFIC_FIELDS = {
 }
 
 export class GenomeDiffParser {
-    static parse(str): (Metadata | Record)[] {
+    static parse(str): any[] {
         let lines = str.split('\n');
         
         return lines
             .filter((line) => line !== '')
-            .map(function (line): (Metadata | Record) {
+            .map(function (line): any {
                 
                 // Metadata
                 // http://barricklab.org/twiki/pub/Lab/ToolsBacterialGenomeResequencing/documentation/gd_format.html#metadata-lines
