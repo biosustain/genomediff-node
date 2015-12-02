@@ -1,7 +1,7 @@
 import {GenomeDiffParser} from './parser';
 import {Metadata, Record, RecordType} from './records';
 
-export default class GenomeDiff extends Object {
+export class GenomeDiff extends Object {
 	metadata: any = {};
 	mutations: Record[] = [];
 	evidence: Record[] = [];

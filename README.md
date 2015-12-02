@@ -23,11 +23,18 @@ doc.parents('<id>') // this will lookup all the parents of the record with `<id>
 
 If used with node, you can use the following:
 ```js
-var GenomeDiff = require('genomediff');
+var GenomeDiff = require('genomediff').GenomeDiff;
 var fs = require('fs');
 var file = fs.readFileSync('<path>', "utf8"); // path to your `.gd` file
-var doc = GenomeDiff.parse(file); // a genomediff string
+var doc = GenomeDiff.parse(file);
 ```
+
+If used in a browser, use:
+```js
+import {GenomeDiff} from 'genomediff';
+var doc = GenomeDiff.parse('<string>'); // a genomediff string
+```
+**Note**: Keep in mind that this package requires an ES6 environment in order to work.
 
 
 ### Running Tests

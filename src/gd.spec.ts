@@ -1,5 +1,5 @@
 import {Record} from './records';
-import GenomeDiff from './gd'
+import {GenomeDiff} from './gd'
 
 describe('GenomeDiff.parse()', () => {
 	let snp;
