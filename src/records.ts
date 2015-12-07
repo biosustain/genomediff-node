@@ -31,7 +31,7 @@ export class Record extends Object {
 	get extra_fields() {
 		let result = {};
 		for (let property of Object.keys(this)) {
-			if (property === 'type' || property === 'id' || property === 'parent_ids') continue;
+			if (property === 'type' && property === 'id' && property === 'parent_ids') continue;
 			result[property] = this[property];
 		}
 		return result;
