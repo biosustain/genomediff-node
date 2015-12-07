@@ -15,7 +15,7 @@ export class GenomeDiff extends Object {
 				obj[property] = this[property];
 			}
 		}
-        return this;
+        return obj;
 	}
 	parents(id): Record[] {
 		let record = this[id];
