@@ -12,11 +12,11 @@ export class GenomeDiff {
 	}
 	// Note that this only works in the browser
 	[Symbol.iterator]() {
-		let items = new Array(this.length);
+		let items = [];
 		var props = Object.keys(this);
     	for (let property of props) {
-			if (property !== 'metadata' && property !== 'mutations' && property !== 'evidence' && property !== 'validation') {
-				items[property] = this[property];
+			if (property !== 'metadata' && property !== 'mutations' && property !== 'evidence' && property !== 'validation' && property !== 'length') {
+				items.push(this[property]);
 			}
 		}
         return items;
