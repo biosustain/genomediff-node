@@ -6,17 +6,20 @@ export class GenomeDiff extends Array {
 	mutations: Record[] = [];
 	evidence: Record[] = [];
 	validation: Record[] = [];
+	constructor(length?: number) {
+		super(length);
+	}
 	// Note that this only works in the browser
-	// [Symbol.iterator]() {
-	// 	let obj = {};
-	// 	var props = Object.keys(this);
-    // 	for (let property of props) {
-	// 		if (property !== 'metadata' && property !== 'mutations' && property !== 'evidence' && property !== 'validation') {
-	// 			obj[property] = this[property];
-	// 		}
-	// 	}
-    //     return obj;
-	// }
+	[Symbol.iterator]() {
+		let items = new Array(this.length);
+		var props = Object.keys(this);
+    	for (let property of props) {
+			if (property !== 'metadata' && property !== 'mutations' && property !== 'evidence' && property !== 'validation') {
+				items[property] = this[property];
+			}
+		}
+        return items;
+	}
 	parents(id): Record[] {
 		let record = this[id];
 		if (record && record.parent_ids.length) {
@@ -26,9 +29,10 @@ export class GenomeDiff extends Array {
 		}
 	}
 	static parse(str): GenomeDiff {
-		let gd = new GenomeDiff();
+		let records = GenomeDiffParser.parse(str);
+		let gd = new GenomeDiff(records.length);
 		
-		for (let record of GenomeDiffParser.parse(str)) {
+		for (let record of records) {
 			if (record instanceof Metadata) {
 				gd.metadata[record.name] = record.value;
 			} else {
