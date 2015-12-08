@@ -1,17 +1,12 @@
 import {GenomeDiffParser} from './parser';
 import {Metadata, Record, RecordType} from './records';
 
-export class GenomeDiff {
+export class GenomeDiff extends Object {
 	metadata: any = {};
 	mutations: Record[] = [];
 	evidence: Record[] = [];
 	validation: Record[] = [];
-	length: number;
-	constructor(length?: number) {
-		this.length = length || 0;
-	}
-	// Note that this only works in the browser
-	[Symbol.iterator]() {
+	values(): Record[] {
 		let items = [];
 		var props = Object.keys(this);
     	for (let property of props) {
@@ -30,11 +25,9 @@ export class GenomeDiff {
 		}
 	}
 	static parse(str): GenomeDiff {
-		let records = GenomeDiffParser.parse(str);
-		let length = records.filter((record) => record instanceof Metadata !== true).length;
-		let gd = new GenomeDiff(length);
+		let gd = new GenomeDiff();
 		
-		for (let record of records) {
+		for (let record of GenomeDiffParser.parse(str)) {
 			if (record instanceof Metadata) {
 				gd.metadata[record.name] = record.value;
 			} else {

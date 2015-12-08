@@ -13,7 +13,9 @@ $(node bin)/npm install genomediff
 ### Usage
 ---------
 
-**GenomeDiff** strings are parsed using `GenomeDiff.parse(<string>)`. The **GenomeDiff** object contains a `metadata` dict with the meta data, as well as `mutations`, `evidence` and `validation` lists, each containing records of that type. Records can be accessed through this list or by id using `GenomeDiff.parse(<string>)[<id>]`. **GenomeDiff** is an iterable and iterating will return all records of all types.
+**GenomeDiff** strings are parsed using `GenomeDiff.parse(<string>)`. The **GenomeDiff** object contains a `metadata` dict with the meta data, as well as `mutations`, `evidence` and `validation` lists, each containing records of that type. Records can be accessed through this list or by id using `GenomeDiff.parse(<string>)[<id>]`. **GenomeDiff** is an iterable and iterating it will return all properties and records.
+
+For accessing all the records you can use `GenomeDiff.parse('<string>').values()` which returns an iterable but only with the `Record` types.
 
 For accessing the parents of a specific mutation you can use the `.parents(<id>)` method available on the document returned from `GenomeDiff.parse(<string>)`:
 ```js
