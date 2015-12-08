@@ -1,22 +1,22 @@
 import {GenomeDiffParser} from './parser';
 import {Metadata, Record, RecordType} from './records';
 
-export class GenomeDiff extends Object {
+export class GenomeDiff extends Array {
 	metadata: any = {};
 	mutations: Record[] = [];
 	evidence: Record[] = [];
 	validation: Record[] = [];
 	// Note that this only works in the browser
-	[Symbol.iterator]() {
-		let obj = {};
-		var props = Object.keys(this);
-    	for (let property of props) {
-			if (property !== 'metadata' && property !== 'mutations' && property !== 'evidence' && property !== 'validation') {
-				obj[property] = this[property];
-			}
-		}
-        return obj;
-	}
+	// [Symbol.iterator]() {
+	// 	let obj = {};
+	// 	var props = Object.keys(this);
+    // 	for (let property of props) {
+	// 		if (property !== 'metadata' && property !== 'mutations' && property !== 'evidence' && property !== 'validation') {
+	// 			obj[property] = this[property];
+	// 		}
+	// 	}
+    //     return obj;
+	// }
 	parents(id): Record[] {
 		let record = this[id];
 		if (record && record.parent_ids.length) {
