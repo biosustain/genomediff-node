@@ -16,18 +16,10 @@ export class GenomeDiff extends Object {
 		}
         return items;
 	}
-	parents(id): Record[] {
-		let record = this[id];
-		if (record && record.parent_ids.length) {
-			return record.parent_ids.map((id) => this[id]);
-		} else {
-			return [];
-		}
-	}
 	static parse(str): GenomeDiff {
 		let gd = new GenomeDiff();
 		
-		for (let record of GenomeDiffParser.parse(str)) {
+		for (let record of GenomeDiffParser.parse(str, gd)) {
 			if (record instanceof Metadata) {
 				gd.metadata[record.name] = record.value;
 			} else {

@@ -33,7 +33,7 @@ const TYPE_SPECIFIC_FIELDS = {
 }
 
 export class GenomeDiffParser {
-    static parse(str): any[] {
+    static parse(str, document = null): any[] {
         let lines = str.split('\n');
         
         return lines
@@ -85,7 +85,7 @@ export class GenomeDiffParser {
                             attrs[key] = convert(value);
                         }
                         
-                        return new Record(type, id, parent_ids, attrs);
+                        return new Record(type, id, parent_ids, attrs, document);
                     }
                     
                     return null;

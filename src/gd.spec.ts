@@ -34,23 +34,6 @@ describe('GenomeDiff.parse()', () => {
 		expect(gd[2]).toEqual(ra);
 	});
 	
-	describe('#parents()', () => {
-		
-		it('should resolve the parents for the given id', () => {
-			
-			let str =
-				'#=GENOME_DIFF	1.0' + '\n' +
-				'#=AUTHOR test' + '\n' +
-				'SNP	1	2	NC_000913	223	A' + '\n' +
-				'RA	2		NC_000913	223	0	G	A';
-			
-			let gd: GenomeDiff = GenomeDiff.parse(str);
-			
-			expect(gd.parents(gd[1].id)).toContain(gd[2]);
-			
-		});
-	});
-	
 	describe('#values()', () => {
 		
 		it('should return an iterable', () => {
@@ -68,6 +51,5 @@ describe('GenomeDiff.parse()', () => {
 			}
 			
 		});
-	})
-	
+	});
 });

@@ -19,10 +19,11 @@ $(node bin)/npm install genomediff
 
 For accessing all the records you can use `GenomeDiff.parse('<string>').values()` which returns an iterable but only with the `Record` types.
 
-For accessing the parents of a specific mutation you can use the `.parents(<id>)` method available on the document returned from `GenomeDiff.parse(<string>)`:
+For accessing the parents of a specific mutation you can use the `parents` property available on each record:
 ```js
 let doc = GenomeDiff.parse('<string>'); // a genomediff string
-doc.parents('<id>') // this will lookup all the parents of the record with `<id>`
+let someMutation = doc[12]; // mutation with id '12'
+someMutation.parents // this will lookup all the parents of the record with id `12` and return as an array of Records
 ```
 
 If used with node, you can use the following:

@@ -16,6 +16,7 @@
 		"./src/records.ts",
 		"./src/records.spec.ts",
 		"./src/gd.ts",
-		"./src/gd.spec.ts"
+		"./src/gd.spec.ts",
+		"./src/parents.spec.ts"
 	]
 }

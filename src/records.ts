@@ -17,7 +17,8 @@ export class Record extends Object {
 	type: string;
 	id: number;
 	parent_ids: number[];
-	constructor(type: string, id: number, parent_ids: number[] = [], extra?: any) {
+	parents: Record[];
+	constructor(type: string, id: number, parent_ids: number[] = [], extra: any = {}, document = null) {
 		super();
 		this.type = type;
 		this.id = id;
@@ -27,6 +28,15 @@ export class Record extends Object {
 				this[key] = extra[key];
 			}
 		}
+		Object.defineProperty(this, 'parents', {
+			get: () => {
+				if (document !== null &&  this.parent_ids.length) {
+					return this.parent_ids.map((id) => document[id]);
+				} else {
+					return [];
+				}
+			}
+		});
 	}
 	get extra_fields() {
 		let result = {};
