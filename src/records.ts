@@ -47,6 +47,14 @@ export class Record extends Object {
 		}
 		return result;
 	}
+	get(property: string) {
+		if (this.parents.length) {
+			for (let parent of this.parents) {
+				if (parent.hasOwnProperty(property)) return parent[property];
+			}
+		}
+		return null;
+	}
 	typedef() {
 		return this.type.length;
 	}

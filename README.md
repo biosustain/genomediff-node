@@ -26,6 +26,13 @@ let someMutation = doc[12]; // mutation with id '12'
 someMutation.parents // this will lookup all the parents of the record with id `12` and return as an array of Records
 ```
 
+If you want to get an attribute from a parent record then you can use the `.get(<attribute>)` method available on the record to do so:
+```js
+let doc = GenomeDiff.parse('<string>'); // a genomediff string
+let someMutation = doc[12]; // mutation with id '12'
+someMutation.get('coverage') // this will lookup all the parents of the record with id `12` and return the value of the attribute `coverage` if found on any of the parent records
+```
+
 If used with node, you can use the following:
 ```js
 var GenomeDiff = require('genomediff').GenomeDiff;
