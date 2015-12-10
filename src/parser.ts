@@ -97,7 +97,7 @@ export class GenomeDiffParser {
 }
 
 function convert(value: any): any {
-    let float = parseFloat(value);
+    let float = Number(value);
     if (!isNaN(float) && typeof float === 'number') {
         return float;
     }

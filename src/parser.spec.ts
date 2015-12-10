@@ -10,7 +10,7 @@ describe('GenomeDiffParser.parse()', () => {
 	beforeEach(function() {
 		version = new Metadata('GENOME_DIFF', '1.0');
 		author = new Metadata('AUTHOR', 'test');
-		snp = new Record('SNP', 1, [23423], {new_seq: 'A', seq_id: 'NC_000913', position: 223, gene_name: 'mhpE'});
+		snp = new Record('SNP', 1, [23423], {new_seq: 'A', seq_id: 'NC_000913', position: 223, gene_name: 'mhpE', total_cov: '39/41'});
 		ra = new Record('RA', 2, [], {new_base: 'A', frequency: 0.1366, position: 223, seq_id: 'NC_000913', insert_position: 0, ref_base: 'G'});
 	});
   
@@ -18,7 +18,7 @@ describe('GenomeDiffParser.parse()', () => {
 		let str =
 			'#=GENOME_DIFF	1.0' + '\n' +
 			'#=AUTHOR test' + '\n' +
-			'SNP	1	23423	NC_000913	223	A	gene_name=mhpE' + '\n' +
+			'SNP	1	23423	NC_000913	223	A	gene_name=mhpE	total_cov=39/41' + '\n' +
 			'RA	2		NC_000913	223	0	G	A	frequency=0.1366';
 		
 		let records = GenomeDiffParser.parse(str);
@@ -35,7 +35,7 @@ describe('GenomeDiffParser.parse()', () => {
 		let str =
 			'#=GENOME_DIFF	1.0' + '\n' +
 			'#=AUTHOR test' + '\n' +
-			'SNP	1	23423	NC_000913	223	A	gene_name=mhpE' + '\n' +
+			'SNP	1	23423	NC_000913	223	A	gene_name=mhpE	total_cov=39/41' + '\n' +
 			'RA	2	.	NC_000913	223	0	G	A	frequency=0.1366';
 		
 		let records = GenomeDiffParser.parse(str);
