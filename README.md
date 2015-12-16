@@ -49,6 +49,12 @@ var doc = GenomeDiff.parse('<string>'); // a genomediff string
 **Note**: Keep in mind that this package requires an ES6 environment in order to work.
 
 
+### Info
+--------
+
+This library adds an additional mutational type called `MCDEL` (it is not found in the bacterial genome reseq GD [spec](http://barricklab.org/twiki/pub/Lab/ToolsBacterialGenomeResequencing/documentation/gd_format.html#evidence-types)). This type is computed from a `MC` evidence type who's id is not referenced by any of the `DEL` mutations. This custom mutation type means that the `MC` evidence is interpreted as a `DEL` mutation.
+
+
 ### Running Tests
 -----------------
 A full test suite can be run using `npm test`. If you wish to run tests on file change, use `jasmine-node dist/ --autotest --color --verbose`.
