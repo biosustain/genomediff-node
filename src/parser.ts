@@ -35,8 +35,7 @@ const TYPE_SPECIFIC_FIELDS = {
 export class GenomeDiffParser {
     static parse(str, document = null): any[] {
         let lines = str.split('\n');
-        
-        return lines
+        let records = lines
             .filter((line) => line !== '')
             .map(function (line): any {
                 
@@ -92,7 +91,36 @@ export class GenomeDiffParser {
                 }
                 
             })
-            .filter((mutation) => mutation !== null);
+            .filter((record) => record !== null);
+        
+        // Create custom mutational type MCDEL.
+        // Compute MCDEL from all the MC records that are not referenced by any of the DEL records.
+        // Compute MCDEL `size` field as `(record.end - record.start + 1)`.
+        let DELRecords = records.filter((record) => record.type === 'DEL');
+        
+        if (DELRecords.length) {
+            let DELParentIds = DELRecords
+                .map((record) => record.parent_ids)
+                .reduce((a, b) => a.concat(b));
+            let MCRecords = records.filter((record) => record.type === 'MC');
+            let MCDELRecords = MCRecords.filter((record) => {
+                for (let parentId of DELParentIds) {
+                    if (parentId === record.id) return false;
+                }
+                return true;
+            });
+            
+            if (MCDELRecords.length) {
+                for (let record of MCDELRecords) {
+                    let extra = record.extra_fields;
+                    records.push(
+                        new Record('MCDEL', record.id, record.parent_ids, Object.assign({}, extra, {size: (extra.end - extra.start + 1)}), document)
+                    );
+                }
+            }
+        }
+        
+        return records;
     }
 }
 
