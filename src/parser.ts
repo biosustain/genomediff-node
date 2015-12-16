@@ -111,17 +111,18 @@ export class GenomeDiffParser {
             });
             
             if (MCDELRecords.length) {
-                for (let record of MCDELRecords) {
+                MCDELRecords.forEach((record, idx) => {
                     let extra = record.extra_fields;
                     let attrs = {};
                     Object.assign(attrs, extra, {
                         size: (extra.end - extra.start + 1),
                         position: extra.start
                     });
+                    console.log(idx)
                     records.push(
-                        new Record('MCDEL', record.id, record.parent_ids, attrs, document)
+                        new Record('MCDEL', (records.length + idx - 1), [record.id], attrs, document)
                     );
-                }
+                });
             }
         }
         
