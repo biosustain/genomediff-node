@@ -8,6 +8,7 @@ export class Metadata {
 }
 
 export enum RecordType {
+	MCDELMutationalEvent = 5,
     MutationalEvent = 3,
     Evidence = 2,
     Validation = 4

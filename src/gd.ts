@@ -24,6 +24,7 @@ export class GenomeDiff extends Object {
 				gd.metadata[record.name] = record.value;
 			} else {
 				switch (record.typedef()) {
+					case RecordType.MCDELMutationalEvent:
 					case RecordType.MutationalEvent:
 						gd.mutations.push(record);
 						break;
