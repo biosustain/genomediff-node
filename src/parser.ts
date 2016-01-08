@@ -118,7 +118,6 @@ export class GenomeDiffParser {
                         size: (extra.end - extra.start + 1),
                         position: extra.start
                     });
-                    console.log(idx)
                     records.push(
                         new Record('MCDEL', (records.length + idx - 1), [record.id], attrs, document)
                     );
