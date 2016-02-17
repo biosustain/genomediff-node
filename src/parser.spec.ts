@@ -10,8 +10,8 @@ describe('GenomeDiffParser.parse()', () => {
 	beforeEach(function() {
 		version = new Metadata('GENOME_DIFF', '1.0');
 		author = new Metadata('AUTHOR', 'test');
-		snp = new Record('SNP', 1, [23423], {new_seq: 'A', seq_id: 'NC_000913', position: 223, gene_name: 'mhpE', total_cov: '39/41'});
-		ra = new Record('RA', 2, [], {new_base: 'A', frequency: 0.1366, position: 223, seq_id: 'NC_000913', insert_position: 0, ref_base: 'G'});
+		snp = new Record('SNP', 1, [23423], null, {new_seq: 'A', seq_id: 'NC_000913', position: 223, gene_name: 'mhpE', total_cov: '39/41'});
+		ra = new Record('RA', 2, [], null, {new_base: 'A', frequency: 0.1366, position: 223, seq_id: 'NC_000913', insert_position: 0, ref_base: 'G'});
 	});
   
 	it('should correctly parse a genomediff string', () => {

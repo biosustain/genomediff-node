@@ -84,7 +84,7 @@ export class GenomeDiffParser {
                             attrs[key] = convert(value);
                         }
                         
-                        return new Record(type, id, parent_ids, attrs, document);
+                        return new Record(type, id, parent_ids, document, attrs);
                     }
                     
                     return null;
@@ -112,14 +112,14 @@ export class GenomeDiffParser {
             
             if (MCDELRecords.length) {
                 MCDELRecords.forEach((record, idx) => {
-                    let extra = record.extra_fields;
+                    let extra = record.attributes;
                     let attrs = {};
                     Object.assign(attrs, extra, {
                         size: (extra.end - extra.start + 1),
                         position: extra.start
                     });
                     records.push(
-                        new Record('MCDEL', (records.length + idx - 1), [record.id], attrs, document)
+                        new Record('MCDEL', (records.length + idx - 1), [record.id], document, attrs)
                     );
                 });
             }

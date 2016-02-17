@@ -5,7 +5,7 @@ describe('Record', () => {
 	let snp;
 	
 	beforeEach(function() {
-		snp = new Record('SNP', 1, [23423], {seq_id: 'NC_000913', new_seq: 'A', position: 223, test: 'more'});
+		snp = new Record('SNP', 1, [23423], null, {seq_id: 'NC_000913', new_seq: 'A', position: 223, test: 'more'});
 	});
   
 	it('should correctly construct a record object on instantiation', () => {
@@ -15,9 +15,9 @@ describe('Record', () => {
 		expect('more').toEqual(snp.test);
 	});
 	
-	describe('#extra_fields', () => {
-		it('should return all extra fields excluding all base fileds (id, type, parent_ids)', () => {
-			expect(snp.extra_fields).toEqual({
+	describe('#attributes', () => {
+		it('should return all extra fields excluding all base fileds (id, type, parent_ids, document)', () => {
+			expect(snp.attributes).toEqual({
 				seq_id: 'NC_000913',
 				new_seq: 'A',
 				position: 223,

@@ -6,8 +6,8 @@ describe('GenomeDiff.parse()', () => {
 	let ra;
 	
 	beforeEach(function() {
-		snp = new Record('SNP', 1, [23423], {seq_id: 'NC_000913', new_seq: 'A', position: 223});
-		ra = new Record('RA', 2, [], {position: 223, seq_id: 'NC_000913', insert_position: 0, new_base: 'A', ref_base: 'G'});
+		snp = new Record('SNP', 1, [23423], null, {seq_id: 'NC_000913', new_seq: 'A', position: 223});
+		ra = new Record('RA', 2, [], null, {position: 223, seq_id: 'NC_000913', insert_position: 0, new_base: 'A', ref_base: 'G'});
 	});
   
 	it('should correctly parse a genomediff string and return a GD document', () => {
@@ -27,11 +27,8 @@ describe('GenomeDiff.parse()', () => {
 		expect(gd.mutations.length).toBe(1);
 		expect(gd.evidence.length).toBe(1);
 		
-		expect(gd.mutations).toContain(snp);
-		expect(gd.evidence).toContain(ra);
-		
-		expect(gd[1]).toEqual(snp);
-		expect(gd[2]).toEqual(ra);
+        expect(gd.mutations.find((mutation) => mutation.type === snp.type)).not.toBeUndefined();
+        expect(gd.evidence.find((evidence) => evidence.type === ra.type)).not.toBeUndefined();
 	});
 	
 	describe('#values()', () => {
