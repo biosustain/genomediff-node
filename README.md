@@ -61,7 +61,7 @@ A full test suite can be run using `npm test`. If you wish to run tests on file 
 
 ### Development
 ---------------
-When developing, use `tsc --watch` to build the `.ts` files on change.
+When developing, use `tsc --watch` to build the `.ts` files on change. Alternatively, you can use `npm run build` if you do not wish to run the build on file change.
 
 **Note**: If you add new files or remove files, make sure to edit the `"files"` field in `tsconfig.json`:
 ```js
