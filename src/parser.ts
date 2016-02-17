@@ -93,38 +93,6 @@ export class GenomeDiffParser {
             })
             .filter((record) => record !== null);
         
-        // Create custom mutational type MCDEL.
-        // Compute MCDEL from all the MC records that are not referenced by any of the DEL records.
-        // Compute MCDEL `size` field as `(record.end - record.start + 1)`.
-        let DELRecords = records.filter((record) => record.type === 'DEL');
-        
-        if (DELRecords.length) {
-            let DELParentIds = DELRecords
-                .map((record) => record.parent_ids)
-                .reduce((a, b) => a.concat(b));
-            let MCRecords = records.filter((record) => record.type === 'MC');
-            let MCDELRecords = MCRecords.filter((record) => {
-                for (let parentId of DELParentIds) {
-                    if (parentId === record.id) return false;
-                }
-                return true;
-            });
-            
-            if (MCDELRecords.length) {
-                MCDELRecords.forEach((record, idx) => {
-                    let extra = record.attributes;
-                    let attrs = {};
-                    Object.assign(attrs, extra, {
-                        size: (extra.end - extra.start + 1),
-                        position: extra.start
-                    });
-                    records.push(
-                        new Record('MCDEL', (records.length + idx - 1), [record.id], document, attrs)
-                    );
-                });
-            }
-        }
-        
         return records;
     }
 }
