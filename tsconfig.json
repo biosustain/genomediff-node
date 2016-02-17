@@ -10,7 +10,7 @@
 		"outDir": "./dist"
 	},
 	"files": [
-		"./tsd_typings/tsd.d.ts",
+		"./typings/main.d.ts",
 		"./src/parser.ts",
 		"./src/parser.spec.ts",
 		"./src/records.ts",
