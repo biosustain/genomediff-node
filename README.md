@@ -66,7 +66,7 @@ When developing, use `tsc --watch` to build the `.ts` files on change. Alternati
 **Note**: If you add new files or remove files, make sure to edit the `"files"` field in `tsconfig.json`:
 ```js
 "files": [
-	"./tsd_typings/tsd.d.ts", // never remove this line
+	"./typings/typings.d.ts", // never remove this line
 	// add more files after this line
 	"./src/parser.ts",
 	"./src/parser.spec.ts",
